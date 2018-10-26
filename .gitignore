@@ -136,3 +136,4 @@ pip-selfcheck.json
 pyvenv.cfg
 
 models.py
+admin.py
