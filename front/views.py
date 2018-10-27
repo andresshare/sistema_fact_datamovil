@@ -9,4 +9,4 @@ class HomePage(generic.View):
 
 
 class Home(generic.TemplateView):
-    template_name = 'base/base.html'
+    template_name = 'front/home.html'

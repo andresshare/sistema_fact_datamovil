@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+
+{% block contenido %}
+                        <div class="panel panel-primary">
+                            <div class="panel-heading"></div>
+                            <div class="panel-body">
+                                <table width="100%" class="table table-striped table-bordered table-hover" id="datatables-example" >
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Descripcion</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <% for item in obj %>
+                                    <tr>
+                                        <td>{{ item.id }}</td>
+                                        <td>{{ item.description }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+{% endblock contenido %}
