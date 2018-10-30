@@ -6,3 +6,4 @@ urlpatterns =[
     path('categorias/new', CategoriaNew.as_view(),name='categoria_new'),
 
 ]
+

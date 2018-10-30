@@ -14,8 +14,14 @@ class CategoriaView(generic.ListView):
 
 class CategoriaNew(generic.CreateView):
     model=Categoria
-    template_name = 'catalogos/categoria_form.html'
+    template_name = "catalogos/categoria_form.html"
     context_object_name = 'obj'
     form_class=CategoriaForm
-    success_url = reverse_lazy('catalogos:categoria_list')
+    success_url = reverse_lazy("catalogos:categoria_list")
+
+
+
+
+
+
 
