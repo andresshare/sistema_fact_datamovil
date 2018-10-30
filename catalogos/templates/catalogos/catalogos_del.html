@@ -5,24 +5,19 @@
 
         <div class="panel panel-default">
             <div class="panel panel-heading">
-                    Editar/ crear categorias
+                    Eliminar
             </div>
 
             <div class="panel-body">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" class="btn btn-danger"><span class="fa fa-save"></span> Guardar</button>
+                <div class="alert alert-success">
+                    ¿Eliminar {{ obj.descripcion }}?
+                </div>
+                <button type="submit" class="btn btn-danger"><span class="fa fa-save"></span>Si, Eliminar </button>
                 <a href="{% url 'catalogos:categoria_list' %}" class="btn btn-success " ><span class="fa fa-undo">Cancelar</span></a>
             </div>
         </div>
     </form>
 
 {% endblock contenido %}
-
-
-
-
-
-
-
-

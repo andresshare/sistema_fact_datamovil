@@ -20,6 +20,19 @@ class CategoriaNew(generic.CreateView):
     success_url = reverse_lazy("catalogos:categoria_list")
 
 
+class CategoriaEdit(generic.UpdateView):
+    model=Categoria
+    template_name = "catalogos/categoria_form.html"
+    context_object_name = 'obj'
+    form_class=CategoriaForm
+    success_url = reverse_lazy("catalogos:categoria_list")
+
+class CategoriaDel(generic.DeleteView):
+    model = Categoria
+    template_name = "catalogos/catalogos_del.html"
+    context_object_name = 'obj'
+    success_url = reverse_lazy("catalogos:categoria_list")
+
 
 
 
