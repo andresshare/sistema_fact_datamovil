@@ -12,23 +12,30 @@
                 <tr>
                     <th>Id</th>
                     <th>Descripción</th>
+                    <th>Estado</th>
+                    <th>Creado</th>
+                    <th>Modificado</th>
+                    <th>Acciones</th>
                 </tr>
-                </thead>
-                <tbody>
+            </thead>
+            <tbody>
                 {% for item in obj %}
-                    <tr>
-                        <td>{{ item.id }}</td>
-                        <td>{{ item.descripcion }}</td>
-                        <td>
-                            <a href=" {%  url 'catalogos:categoria_edit' item.id %}" class="btn btn-primary btn-circle"><span class="fa fa-edit"></span></a>
-                            <a href=" {%  url 'catalogos:categoria_delete' item.id %}" class="btn btn-danger btn-circle"><span class="fa fa-trash"></span></a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.descripcion }}</td>
+                    <td>{{ item.activo|yesno:"Activo,Inactivo"}}</td>
+                    <td>{{ item.creado|date:'d/m/Y H:i' }}</td>
+                    <td>{{ item.modificado|date:'d/m/Y H:i' }}</td>
+                    <td>
+                        <a href="{% url 'catalogos:categoria_edit' item.id %}" class="btn btn-primary btn-circle"><span class="fa fa-edit"></span></a>
+                        <a href="{% url 'catalogos:categoria_delete' item.id %}" class="btn btn-danger btn-circle"><span class="fa fa-trash"></span></a>
+                    </td>
+                </tr>
                 {% endfor %}
-                </tbody>
-            </table>
-        </div>
+            </tbody>
+        </table>
     </div>
+</div>
 {% endblock contenido %}
 
 

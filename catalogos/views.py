@@ -11,6 +11,10 @@ from front.views import SinPrivilegios
 
 from django.contrib.messages.views import SuccessMessageMixin
 
+#mensaje
+
+from django.contrib.messages.views import SuccessMessageMixin
+
 
 class CategoriaView(LoginRequiredMixin, generic.ListView):
     model = Categoria

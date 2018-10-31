@@ -5,8 +5,8 @@ from catalogos.models import  Categoria
 class CategoriaForm(forms.ModelForm):
     class Meta:
         model=Categoria
-        fields=['descripcion']
-        labels= {'descripcion':'Descripcion de las categoria'},
+        fields=['descripcion','activo']
+        labels= {'descripcion':'Descripcion de las categoria','activo':'Estado'},
         widget = {'descripcion':forms.TextInput()}
 
     def __init__(self,*args, **kwargs):
