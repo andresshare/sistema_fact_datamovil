@@ -14,7 +14,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 class CategoriaView(LoginRequiredMixin, generic.ListView):
     model = Categoria
-    template_name = 'catalogos/categoria_list.htmll'
+    template_name = 'catalogos/categoria_list.html'
     context_object_name = 'obj'
     login_url = 'front:login'
 
@@ -27,7 +27,8 @@ class CategoriaNew(SuccessMessageMixin, LoginRequiredMixin, SinPrivilegios,
     context_object_name = 'obj'
     form_class=CategoriaForm
     success_url = reverse_lazy("catalogos:categoria_list")
-    login_url = 'front:login'
+    success_message = "Categoría Creada Satisfactoriamente"
+
 
 
 class CategoriaEdit(LoginRequiredMixin,SinPrivilegios,
@@ -38,7 +39,7 @@ class CategoriaEdit(LoginRequiredMixin,SinPrivilegios,
     context_object_name = 'obj'
     form_class=CategoriaForm
     success_url = reverse_lazy("catalogos:categoria_list")
-    login_url = 'front:login'
+
 
 
 class CategoriaDel(LoginRequiredMixin, SinPrivilegios, generic.DeleteView):
@@ -47,7 +48,22 @@ class CategoriaDel(LoginRequiredMixin, SinPrivilegios, generic.DeleteView):
     template_name = "catalogos/catalogos_del.html"
     context_object_name = 'obj'
     success_url = reverse_lazy("catalogos:categoria_list")
-    login_url = 'front:login'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
