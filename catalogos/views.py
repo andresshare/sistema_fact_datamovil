@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
@@ -49,7 +50,7 @@ class SubCategoriaView(LoginRequiredMixin, generic.ListView):
     model = SubCategoria
     template_name = "catalogos/subcategoria_list.html"
     context_object_name = "obj"
-    login_url = 'front:login'
+    login_url = 'generales:login'
 
 
 class SubCategoriaNew(SuccessMessageMixin, LoginRequiredMixin, SinPrivilegios,
@@ -106,3 +107,47 @@ class ProductoEdit(SuccessMessageMixin, SinPrivilegios, generic.UpdateView):
     form_class = ProductoForm
     success_url = reverse_lazy("catalogos:producto_list")
     success_message="Producto Modificado Satisfactoriamente"
+
+def categoria_print(self, pk=None):
+    import io
+    from reportlab.platypus import SimpleDocTemplate, Paragraph, TableStyle
+    from reportlab.lib.styles import getSampleStyleSheet
+    from reportlab.lib import colors
+    from reportlab.lib.pagesizes import letter
+    from reportlab.platypus import Table
+
+    response = HttpResponse(content_type='application/pdf')
+    buff = io.BytesIO()
+    doc = SimpleDocTemplate(buff,
+                            pagesize=letter,
+                            rightMargin=40,
+                            leftMargin=40,
+                            topMargin=60,
+                            bottomMargin=18,
+                            )
+    categorias = []
+    styles = getSampleStyleSheet()
+    header = Paragraph("Listado de Categorías", styles['Heading1'])
+    categorias.append(header)
+    headings = ('Id', 'Descrición', 'Activo', 'Creación')
+    if not pk:
+        todascategorias = [(p.id, p.descripcion, p.activo, p.creado)
+                           for p in Categoria.objects.all().order_by('pk')]
+    else:
+        todascategorias = [(p.id, p.descripcion, p.activo, p.creado)
+                           for p in Categoria.objects.filter(id=pk)]
+    
+    t = Table([headings] + todascategorias)
+    t.setStyle(TableStyle(
+        [
+            ('GRID', (0, 0), (3, -1), 1, colors.dodgerblue),
+            ('LINEBELOW', (0, 0), (-1, 0), 2, colors.darkblue),
+            ('BACKGROUND', (0, 0), (-1, 0), colors.dodgerblue)
+        ]
+    ))
+
+    categorias.append(t)
+    doc.build(categorias)
+    response.write(buff.getvalue())
+    buff.close()
+    return response
